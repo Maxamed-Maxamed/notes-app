@@ -1,6 +1,9 @@
+
 package org.example
 
 import java.lang.System.exit
+
+
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -8,38 +11,44 @@ import java.lang.System.exit
 fun main() {
     mainMenu()
     runMenu()
+    readNextChar( " > ==>>")
 }
 
 fun mainMenu() : Int {
-    print("""
-          ----------------------------------
-          |        NOTE KEEPER APP         |
-          ----------------------------------
-          | NOTE MENU                      |
-          |   1) Add a note                |
-          |   2) List all notes            |
-          |   3) Update a note             |
-          |   4) Delete a note             |
-          ----------------------------------
-          |   0) Exit                      |
-          ----------------------------------
-          ==>> """) // Read the user's input as a string and convert it to an integer value using the toIntOrNull() function of the readlnOrNull() function.
-    // Read the user's input as a string and convert it to an integer
-//    return readlnOrNull()?.toIntOrNull() ?: -1 // Return -1 if the input is not a valid integer
+    print(
+        """ 
+         > ----------------------------------
+         > |        NOTE KEEPER APP         |
+         > ----------------------------------
+         > | NOTE MENU                      |
+         > |   1) Add a note                |
+         > |   2) List all notes            |
+         > |   3) Update a note             |
+         > |   4) Delete a note             |
+         > ----------------------------------
+         > |   0) Exit                      |
+         > ----------------------------------
+         > ==>> """.trimMargin(">"))
+    return readNextInt(" > ==>>")
 
-    return readln().toInt() // Read the user's input as a string and convert it to an integer value using the toIntOrNull() function of the readlnOrNull() function.
 }
+
+
+
+
+
+
+
 
 fun runMenu() {
     do {
         val option = mainMenu()
         when (option) {
-            1 -> addNote() // handle add the note menu option here - use the addNote() function
-            2 -> viewNote() // handle view the note menu option here - use the viewNote() function
-            3 -> editNote() // handle edit the note menu option here - use the editNote() function
-            4 -> deleteNote() // handle delete the note menu option here - use the deleteNote() function
-            0 -> exitApp() // handle exit the app menu option here - use the exitApp() function
-//            else -> println("Invalid option" + option) // handle invalid option here - print a message
+            1 -> addNote()
+            2 -> viewNote()
+            3 -> editNote()
+            4 -> deleteNote()
+            0 -> exitApp()
         else -> println("Invalid option $option") // handle invalid option here - print a message
         }
 
@@ -64,4 +73,27 @@ fun deleteNote() {
 fun exitApp() {
     println("Exit App BYE BYE")
     exit(0)
+}
+
+
+fun readNextInt(prompt: String?): Int {
+    do {
+        try {
+            print(prompt)
+            return readln().toInt()
+        } catch (e: NumberFormatException) {
+            System.err.println("\tEnter a number please.")
+        }
+    } while (true)
+}
+
+fun readNextChar(prompt: String?): Char {
+    do {
+        try {
+            print(prompt)
+            return readln().first()
+        } catch (e: NumberFormatException) {
+            System.err.println("\tEnter a character please.")
+        }
+    } while (true)
 }
