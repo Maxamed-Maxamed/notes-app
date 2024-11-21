@@ -2,8 +2,7 @@
 package org.example
 
 import java.lang.System.exit
-
-
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -13,6 +12,8 @@ fun main() {
     runMenu()
     readNextChar( " > ==>>")
 }
+
+private val logger = KotlinLogging.logger {}
 
 fun mainMenu() : Int {
     print(
@@ -58,7 +59,7 @@ fun runMenu() {
 }
 
 fun addNote() {
-    println("Add a note")
+    logger.info { "addNote() function invoked" }
 }
 
 fun viewNote() {
