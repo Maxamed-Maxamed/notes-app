@@ -60,6 +60,8 @@ fun runMenu() {
 
 fun addNote() {
     logger.info { "addNote() function invoked" }
+    readNextChar("Enter a character: ")
+
 }
 
 fun viewNote() {
